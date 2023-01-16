@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideBarService } from './services/side-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stockCalc_app';
+
+  constructor(public sideBarService:SideBarService) {
+
+  }
 }
