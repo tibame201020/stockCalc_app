@@ -1,23 +1,22 @@
-import { Bar } from "./alink";
+import { Bar } from './alink';
 
 export const SEARCH_SIDE_BAR: Bar = {
   alink: [
     {
       name: 'Summary',
       link: '/search/summary',
-      icon: '',
+      icon: 'tune',
     },
     {
       name: 'price',
       link: '/search/price',
-      icon: '',
+      icon: 'attach_money',
     },
     {
       name: 'financial',
       link: '/search/financial',
-      icon: '',
+      icon: 'wysiwyg',
     },
-
   ],
 };
 
@@ -26,12 +25,12 @@ export const STRATEGY_SIDE_BAR: Bar = {
     {
       name: 'Summary',
       link: '/strategy/summary',
-      icon: 'home',
+      icon: 'tune',
     },
     {
       name: 'backtesting',
       link: '/strategy/backtesting',
-      icon: 'newspaper',
+      icon: 'query_stats',
     },
   ],
 };
