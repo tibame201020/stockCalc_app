@@ -1,0 +1,25 @@
+*{
+　font-family:Comic Sans MS,serif,sans-serif,cursive,fantasy,monospace;
+}
+
+.content {
+  background-color: beige;
+}
+
+.header-stikcy {
+  z-index: 999;
+  position: sticky;
+  top: 1%;
+  left: 0;
+}
+
+.sideBar {
+  width: min-content !important;
+}
+
+.sidebar-stikcy {
+  z-index: 900;
+  position: sticky;
+  top: 10%;
+  left: 0;
+}
