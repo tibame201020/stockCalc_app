@@ -15,12 +15,12 @@
 
 .header:hover::after {
     width: 100%;
-    background: cornflowerblue;
+    background: coral;
 }
 
 .header.active::after {
     width: 100%;
-    background: coral;
+    background: cornflowerblue;
 }
 
 .header::after {

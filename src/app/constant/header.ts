@@ -1,21 +1,21 @@
-import { Bar } from "./alink";
+import { Bar } from './alink';
 
 export const HEADER: Bar = {
   alink: [
     {
       name: 'Home',
       link: '/home',
-      icon: '',
+      icon: 'home',
     },
     {
       name: 'Search',
       link: '/search',
-      icon: '',
+      icon: 'search',
     },
     {
       name: 'Strategy',
       link: '/strategy',
-      icon: '',
-    }
+      icon: 'analytics',
+    },
   ],
 };
