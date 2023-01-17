@@ -5,7 +5,7 @@ export const SEARCH_SIDE_BAR: Bar = {
     {
       name: 'Summary',
       link: '/search/summary',
-      icon: 'tune',
+      icon: 'view_timeline',
     },
     {
       name: 'price',
@@ -25,7 +25,7 @@ export const STRATEGY_SIDE_BAR: Bar = {
     {
       name: 'Summary',
       link: '/strategy/summary',
-      icon: 'tune',
+      icon: 'view_timeline',
     },
     {
       name: 'backtesting',

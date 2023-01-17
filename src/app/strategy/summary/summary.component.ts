@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent {
+    constructor() {}
 
+  getDataRange(dataRange: any) {
+    console.log(dataRange)
+  }
 }

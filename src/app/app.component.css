@@ -2,10 +2,6 @@
 　font-family:Comic Sans MS,serif,sans-serif,cursive,fantasy,monospace;
 }
 
-.content {
-  background-color: beige;
-}
-
 .header-stikcy {
   z-index: 999;
   position: sticky;
@@ -22,4 +18,30 @@
   position: sticky;
   top: 10%;
   left: 0;
+}
+
+.content:hover {
+  border-left: 3px solid coral;
+}
+
+.content {
+ height: fit-content;
+  border-left: 3px solid transparent;
+  transition: all 0.1s;
+}
+
+.content:hover::after {
+  width: 100%;
+  background: coral;
+}
+
+.content::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0;
+  top: 5px;
+  background: transparent;
+  transition: all 0.5s;
 }
