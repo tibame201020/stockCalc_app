@@ -15,7 +15,7 @@ export const HEADER: Bar = {
     {
       name: 'Strategy',
       link: '/strategy',
-      icon: 'analytics',
+      icon: 'fact_check',
     },
   ],
 };

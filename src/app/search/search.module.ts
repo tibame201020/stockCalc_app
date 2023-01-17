@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ShareModule } from '../share/share/share.module';
 import { SummaryComponent } from './summary/summary.component';
 import { PriceComponent } from './price/price.component';
 import { FinancialComponent } from './financial/financial.component';
@@ -10,6 +10,6 @@ import { FinancialComponent } from './financial/financial.component';
     PriceComponent,
     FinancialComponent
   ],
-  imports: [CommonModule],
+  imports: [ShareModule],
 })
 export class SearchModule {}

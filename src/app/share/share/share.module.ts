@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AngularMaterialModule } from '../material/material.module';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,9 +19,10 @@ import { AngularMaterialModule } from '../material/material.module';
     ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
-    }),
+    })
   ],
-  declarations: [],
+  declarations: [
+  ],
   exports: [
     CommonModule,
     BrowserModule,
@@ -29,7 +31,7 @@ import { AngularMaterialModule } from '../material/material.module';
     HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    AngularMaterialModule,
+    AngularMaterialModule
   ],
 })
-export class ShareModule {}
+export class ShareModule { }
