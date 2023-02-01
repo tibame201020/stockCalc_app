@@ -1,1 +1,42 @@
-<p>financial works!</p>
+<form [formGroup]="this.formGroup">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <input list="companys" type="text" class="stockCodeKeyInput" placeholder="company" formControlName="keyword">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            param year season compare?
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            datas
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+</div>
+</form>
+
+<datalist id='companys'>
+    <div *ngIf="this.companyList.length">
+        <div *ngFor="let company of this.companyList">
+            <option value="{{company}}"></option>
+        </div>
+    </div>
+</datalist>

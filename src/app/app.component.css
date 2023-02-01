@@ -1,5 +1,5 @@
-*{
-　font-family:Comic Sans MS,serif,sans-serif,cursive,fantasy,monospace;
+* {
+  　font-family: Comic Sans MS, serif, sans-serif, cursive, fantasy, monospace;
 }
 
 .header-stikcy {
@@ -25,9 +25,9 @@
 }
 
 .content {
- height: fit-content;
+  height: fit-content;
   border-left: 3px solid transparent;
-  transition: all 0.1s;
+  transition: border ease-in 0.7s;
 }
 
 .content:hover::after {
