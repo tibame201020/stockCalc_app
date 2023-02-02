@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col">
-            param year season compare?
+            <app-date-picker-range (newItemEvent)="getDataRange($event)"> </app-date-picker-range>
         </div>
     </div>
     <div class="row">
@@ -20,9 +20,9 @@
             <hr>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="this.simpleSheets.length">
         <div class="col">
-            datas
+            <app-single-echart [inputData]="this.simpleSheets"></app-single-echart>
         </div>
     </div>
     <div class="row">

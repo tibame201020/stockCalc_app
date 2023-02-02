@@ -11,8 +11,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-3">
             <app-date-picker-range (newItemEvent)="getDataRange($event)"> </app-date-picker-range>
+        </div>
+        <div class="col-9" *ngIf="this.hasImmediateStock">
+            <button type="button" class="btn btn-info" (click)="openImmediateStock()">ImmediateStock</button>
         </div>
     </div>
     <div class="row">
@@ -21,8 +24,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            datas
+        <div class="col" *ngIf="this.stockDatas.length">
+            <app-stock-price-line [inputData]="this.stockDatas"></app-stock-price-line>
         </div>
     </div>
     <div class="row">
