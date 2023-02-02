@@ -11,13 +11,21 @@ export class DatePickerRangeComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<any>();
   maxDate = new Date();
+  minDate = new Date(new Date().setDate(this.maxDate.getDate() - 30 * 2));
+  financialMinDate = new Date(new Date().setDate(this.maxDate.getDate() - 30 * 36));
   range = this.formBuilder.group({
-    start: [new Date(new Date().setDate(this.maxDate.getDate() - 30))],
+    start: [this.minDate],
     end: [this.maxDate],
   });
   constructor(private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
+    let path = window.location.pathname;
+    if (path.includes('financial') || path.includes('summary')) {
+      this.range.patchValue({
+        start: this.financialMinDate
+      })
+    }
     this.newItemEvent.emit(this.wrapperDateRange(this.range.value));
     this.range.valueChanges.subscribe({
       next: value => {

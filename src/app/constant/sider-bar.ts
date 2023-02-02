@@ -3,7 +3,7 @@ import { Bar } from './alink';
 export const SEARCH_SIDE_BAR: Bar = {
   alink: [
     {
-      name: 'Summary',
+      name: 'Compare',
       link: '/search/summary',
       icon: 'view_timeline',
     },

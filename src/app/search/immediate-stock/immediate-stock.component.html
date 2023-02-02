@@ -1,0 +1,205 @@
+<div class="container-fluid" *ngIf="this.stockImmediateInfo">
+    <div class="row">
+        <div class="col">
+            <strong>{{this.stockImmediateInfo.company}}</strong>
+            <pre>{{this.stockImmediateInfo.code}}</pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 totalInfo">
+            <div class="container-fluid totalInfoIn">
+                <div class="row">
+                    <div class="col">
+                        <pre>盤中整股</pre>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>開盤</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfo.openToday}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>昨收</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfo.closeYesterday}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>目前最高</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfo.high}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>目前最低</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfo.low}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>成交量</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfo.totalVolumes}}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <pre>最新成交 價:{{this.stockImmediateInfo.deal.price}}, 量:{{this.stockImmediateInfo.deal.volume}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <pre> </pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>委買</pre>
+                                    </div>
+                                </div>
+                                <div class="row"*ngFor="let data of this.stockImmediateInfo.askToBuys">
+                                    <div class="col-6">
+                                        <pre>{{data.volume}}</pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>{{data.price}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <pre>委賣</pre>
+                                    </div>
+                                </div>
+                                <div class="row" *ngFor="let data of this.stockImmediateInfo.askToSells">
+                                    <div class="col-6">
+                                        <pre>{{data.price}}</pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>{{data.volume}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 totalInfo">
+            <div class="container-fluid totalInfoIn">
+                <div class="row">
+                    <div class="col">
+                        <pre>盤中零股</pre>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>開盤</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfoOdd.openToday}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>昨收</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfoOdd.closeYesterday}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>目前最高</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfoOdd.high}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>目前最低</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfoOdd.low}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <pre>成交量</pre>
+                            </div>
+                            <div class="col-9">
+                                <pre>{{this.stockImmediateInfoOdd.totalVolumes}}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <pre>最新成交 價:{{this.stockImmediateInfoOdd.deal.price}}, 量:{{this.stockImmediateInfoOdd.deal.volume}}</pre>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <pre> </pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>委買</pre>
+                                    </div>
+                                </div>
+                                <div class="row" *ngFor="let data of this.stockImmediateInfoOdd.askToBuys">
+                                    <div class="col-6">
+                                        <pre>{{data.volume}}</pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>{{data.price}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col">
+                                        <pre>委賣</pre>
+                                    </div>
+                                </div>
+                                <div class="row" *ngFor="let data of this.stockImmediateInfoOdd.askToSells">
+                                    <div class="col-6">
+                                        <pre>{{data.price}}</pre>
+                                    </div>
+                                    <div class="col-6">
+                                        <pre>{{data.volume}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

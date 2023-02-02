@@ -31,7 +31,8 @@ import { AngularMaterialModule } from '../material/material.module';
     HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    NgxEchartsModule
   ],
 })
 export class ShareModule { }

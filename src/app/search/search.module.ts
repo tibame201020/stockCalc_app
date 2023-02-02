@@ -4,12 +4,14 @@ import { SummaryComponent } from './summary/summary.component';
 import { PriceComponent } from './price/price.component';
 import { FinancialComponent } from './financial/financial.component';
 import { ShareshareComponetsModule } from '../share/shareshare-componets/shareshare-componets.module';
+import { ImmediateStockComponent } from './immediate-stock/immediate-stock.component';
 
 @NgModule({
   declarations: [
     SummaryComponent,
     PriceComponent,
-    FinancialComponent
+    FinancialComponent,
+    ImmediateStockComponent
   ],
   imports: [ShareshareComponetsModule],
 })

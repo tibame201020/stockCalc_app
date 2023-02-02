@@ -1,0 +1,69 @@
+.totalInfo::before,
+.totalInfo::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: coral;
+}
+
+.totalInfoIn::before,
+.totalInfoIn::after {
+    content: "";
+    width: 2px;
+    height: 0;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: coral;
+}
+
+.totalInfo:hover::before,
+.totalInfo:hover::after {
+    width: 100%;
+}
+
+.totalInfo:hover .totalInfoIn::before,
+.totalInfo:hover .totalInfoIn::after {
+    height: 100%;
+}
+
+.totalInfo::before,
+.totalInfo::after {
+    transition-delay: 0.2s;
+}
+
+.totalInfo .totalInfoIn::before,
+.totalInfo .totalInfoIn::after {
+    transition-delay: 0s;
+}
+
+.totalInfo::before {
+    right: 0;
+    top: 0;
+}
+
+.totalInfo::after {
+    left: 0;
+    bottom: 0;
+}
+
+.totalInfo .totalInfoIn::before {
+    left: 0;
+    top: 0;
+}
+
+.totalInfo .totalInfoIn::after {
+    right: 0;
+    bottom: 0;
+}
+
+.totalInfo:hover::before,
+.totalInfo:hover::after {
+    transition-delay: 0s;
+}
+
+.totalInfo:hover .totalInfoIn::before,
+.totalInfo:hover .totalInfoIn::after {
+    transition-delay: 0.2s;
+}
