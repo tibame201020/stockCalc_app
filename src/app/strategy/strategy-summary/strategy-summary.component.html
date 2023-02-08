@@ -1,0 +1,25 @@
+
+<form [formGroup]="this.formGroup">
+<div class="container">
+  <div class="row">
+    <div class="form-group">
+      <select class="form-control" id="nameSelect" formControlName="strategy">
+        <option *ngFor="let strategySummary of this.data; let i=index" value="{{strategySummary.name}}">{{strategySummary.name}} - {{strategySummary.zh_name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <pre>描述 : </pre>
+      <pre>{{this.strategySummary.description}}</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" *ngIf="this.strategySummary.formula">
+      <pre>進出場策略 : </pre>
+      <pre>{{this.strategySummary.formula}}</pre>
+    </div>
+  </div>
+</div>
+</form>

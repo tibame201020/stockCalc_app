@@ -1,3 +1,95 @@
-<p>strategy summary works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-info" (click)="openStrategySummary()">取得策略說明</button>
+    </div>
+  </div>
 
-<app-date-picker-range (newItemEvent)="getDataRange($event)"> </app-date-picker-range>
+  <div class="row">
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-tab-group>
+        <mat-tab label="根據策略">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <form [formGroup]="this.formGroup">
+                  <div class="form-group">
+                    <select class="form-control" id="nameSelect" formControlName="strategy">
+                      <option *ngFor="let strategySummary of this.strategys; let i=index"
+                        value="{{strategySummary.name}}">{{strategySummary.name}} - {{strategySummary.zh_name}}</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col" *ngIf="!this.getStrategyResultStatus">
+                data
+              </div>
+              <div class="col" *ngIf="this.getStrategyResultStatus">
+                <app-loading></app-loading>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="根據個股">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <form [formGroup]="this.formGroup">
+                  <input list="codeList" type="text" class="stockCodeKeyInput" placeholder="stock code"
+                    formControlName="keyword">
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col" *ngIf="!this.getStrategyResultByCodeStatus">
+                data
+              </div>
+              <div class="col" *ngIf="this.getStrategyResultByCodeStatus">
+                <app-loading></app-loading>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <br>
+    </div>
+  </div>
+</div>
+
+
+
+
+<datalist id='codeList'>
+  <div *ngIf="this.stockCodeList.length">
+    <div *ngFor="let stock of this.stockCodeList">
+      <option value="{{stock}}"></option>
+    </div>
+  </div>
+</datalist>
