@@ -20,9 +20,12 @@
             <hr>
         </div>
     </div>
-    <div class="row" *ngIf="this.simpleSheets.length">
-        <div class="col">
+    <div class="row">
+        <div class="col" *ngIf="this.simpleSheets.length && !this.getDataStatus">
             <app-single-echart [inputData]="this.simpleSheets"></app-single-echart>
+        </div>
+        <div class="col" *ngIf="this.getDataStatus">
+            <app-loading></app-loading>
         </div>
     </div>
     <div class="row">

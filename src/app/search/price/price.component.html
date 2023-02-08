@@ -24,8 +24,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col" *ngIf="this.stockDatas.length">
+        <div class="col" *ngIf="this.stockDatas.length && !this.getDataStatus">
             <app-stock-price-line [inputData]="this.stockDatas"></app-stock-price-line>
+        </div>
+        <div class="col" *ngIf="this.getDataStatus">
+            <app-loading></app-loading>
         </div>
     </div>
     <div class="row">

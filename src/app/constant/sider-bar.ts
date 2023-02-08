@@ -3,11 +3,6 @@ import { Bar } from './alink';
 export const SEARCH_SIDE_BAR: Bar = {
   alink: [
     {
-      name: 'Compare',
-      link: '/search/summary',
-      icon: 'view_timeline',
-    },
-    {
       name: 'price',
       link: '/search/price',
       icon: 'attach_money',
