@@ -10,23 +10,26 @@ import { ImmediateStockComponent } from '../immediate-stock/immediate-stock.comp
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
-  styleUrls: ['./price.component.css']
+  styleUrls: ['./price.component.css'],
 })
 export class PriceComponent implements OnInit {
+  stockCodeList: string[] = [];
+  beginDate: any;
+  endDate: any;
+  stockDatas: StockData[] = [];
+  hasImmediateStock: boolean = false;
 
-  stockCodeList:string[] = [];
-  beginDate:any;
-  endDate:any;
-  stockDatas:StockData[] = [];
-  hasImmediateStock:boolean = false;
+  getDataStatus = false;
 
   formGroup: FormGroup = this.formBuilder.group({
     keyword: [''],
   });
 
-  constructor(private formBuilder: FormBuilder, private stockService: StockService, private dialog: MatDialog) {
-
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private stockService: StockService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.formGroup.valueChanges.subscribe((value) => {
@@ -38,12 +41,10 @@ export class PriceComponent implements OnInit {
     });
   }
 
-  getStockCodeList(key:string) {
-    this.stockService.getCodeNmList(key).subscribe(
-      res => {
-        this.stockCodeList = res;
-      }
-    )
+  getStockCodeList(key: string) {
+    this.stockService.getCodeNmList(key).subscribe((res) => {
+      this.stockCodeList = res;
+    });
   }
 
   getDataRange(dataRange: any) {
@@ -57,24 +58,27 @@ export class PriceComponent implements OnInit {
       return;
     }
 
-    let code = this.formGroup.value.keyword.includes(':') ? this.formGroup.value.keyword.split(':')[0] : this.formGroup.value.keyword;
+    let code = this.formGroup.value.keyword.includes(':')
+      ? this.formGroup.value.keyword.split(':')[0]
+      : this.formGroup.value.keyword;
     let codeParam: CodeParam = {
       code: code,
       beginDate: this.beginDate,
       endDate: this.endDate,
       year: '',
-      season: ''
-    }
+      season: '',
+    };
 
-    this.stockService.getStockData(codeParam).subscribe(
-      res => {
-        if (res) {
-          this.stockDatas = res;
-        } else {
-          this.stockDatas = [];
-        }
+    this.getDataStatus = true;
+
+    this.stockService.getStockData(codeParam).subscribe((res) => {
+      this.getDataStatus = false;
+      if (res) {
+        this.stockDatas = res;
+      } else {
+        this.stockDatas = [];
       }
-    )
+    });
   }
 
   getImmediateStock() {
@@ -82,16 +86,16 @@ export class PriceComponent implements OnInit {
       return;
     }
 
-    let code = this.formGroup.value.keyword.includes(':') ? this.formGroup.value.keyword.split(':')[0] : this.formGroup.value.keyword;
-    this.stockService.getImmediateStock(code).subscribe(
-      res => {
-        if (res) {
-          this.hasImmediateStock = true;
-        } else {
-          this.hasImmediateStock = false;
-        }
+    let code = this.formGroup.value.keyword.includes(':')
+      ? this.formGroup.value.keyword.split(':')[0]
+      : this.formGroup.value.keyword;
+    this.stockService.getImmediateStock(code).subscribe((res) => {
+      if (res) {
+        this.hasImmediateStock = true;
+      } else {
+        this.hasImmediateStock = false;
       }
-    )
+    });
   }
 
   openImmediateStock() {
@@ -99,13 +103,12 @@ export class PriceComponent implements OnInit {
       width: '70rem',
       minHeight: '30rem',
       maxHeight: '60rem',
-      data: this.formGroup.value.keyword
-    })
+      data: this.formGroup.value.keyword,
+    });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.getStockInfo();
       this.getImmediateStock();
     });
   }
-
 }

@@ -8,22 +8,24 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-financial',
   templateUrl: './financial.component.html',
-  styleUrls: ['./financial.component.css']
+  styleUrls: ['./financial.component.css'],
 })
 export class FinancialComponent implements OnInit {
-
   companyList: string[] = [];
   beginDate: any;
   endDate: any;
-  simpleSheets:SimpleSheet[] = [];
+  simpleSheets: SimpleSheet[] = [];
 
   formGroup: FormGroup = this.formBuilder.group({
     keyword: [''],
   });
 
-  constructor(private formBuilder: FormBuilder, private stockService: StockService) {
+  getDataStatus = false;
 
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private stockService: StockService
+  ) {}
 
   ngOnInit(): void {
     this.formGroup.valueChanges.subscribe((value) => {
@@ -35,11 +37,9 @@ export class FinancialComponent implements OnInit {
   }
 
   getCompanyList(key: string) {
-    this.stockService.getCompanyNmList(key).subscribe(
-      res => {
-        this.companyList = res;
-      }
-    )
+    this.stockService.getCompanyNmList(key).subscribe((res) => {
+      this.companyList = res;
+    });
   }
 
   getDataRange(dataRange: any) {
@@ -53,24 +53,26 @@ export class FinancialComponent implements OnInit {
       return;
     }
 
-    let code = this.formGroup.value.keyword.includes(':') ? this.formGroup.value.keyword.split(':')[0] : this.formGroup.value.keyword;
+    let code = this.formGroup.value.keyword.includes(':')
+      ? this.formGroup.value.keyword.split(':')[0]
+      : this.formGroup.value.keyword;
     let codeParam: CodeParam = {
       code: code,
       beginDate: this.beginDate,
       endDate: this.endDate,
       year: '',
-      season: ''
-    }
+      season: '',
+    };
 
-    this.stockService.getSheetByCodeAndDateRange(codeParam).subscribe(
-      res => {
-        if (res.length) {
-          this.simpleSheets = res;
-        } else {
-          this.simpleSheets = [];
-        }
+    this.getDataStatus = true;
+
+    this.stockService.getSheetByCodeAndDateRange(codeParam).subscribe((res) => {
+      this.getDataStatus = false;
+      if (res.length) {
+        this.simpleSheets = res;
+      } else {
+        this.simpleSheets = [];
       }
-    )
+    });
   }
-
 }
