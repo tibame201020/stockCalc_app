@@ -108,7 +108,6 @@ export class SingleEchartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.inputData)
     if (this.inputData) {
       this.generateChart();
     }

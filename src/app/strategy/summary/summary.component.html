@@ -33,8 +33,27 @@
               </div>
             </div>
             <div class="row">
-              <div class="col" *ngIf="!this.getStrategyResultStatus">
-                data
+              <div class="col" *ngIf="!this.getStrategyResultStatus && this.strategyResultsNormal.length">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"><pre>股票代碼</pre></th>
+                      <th scope="col"><pre>起始日期</pre></th>
+                      <th scope="col"><pre>結束日期</pre></th>
+                      <th scope="col"><pre>最大損失</pre></th>
+                      <th scope="col"><pre>最終獲利</pre></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.strategyResultsNormal">
+                      <td><pre>{{item.stock_id}}</pre></td>
+                      <td><pre>{{item.start_date}}</pre></td>
+                      <td><pre>{{item.end_date}}</pre></td>
+                      <td><pre>{{item.MaxLossPer}}%</pre></td>
+                      <td><pre>{{item.FinalProfitPer}}%</pre></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <div class="col" *ngIf="this.getStrategyResultStatus">
                 <app-loading></app-loading>
@@ -63,8 +82,27 @@
               </div>
             </div>
             <div class="row">
-              <div class="col" *ngIf="!this.getStrategyResultByCodeStatus">
-                data
+              <div class="col" *ngIf="!this.getStrategyResultByCodeStatus && this.strategyResultsByCode.length">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col"><pre>策略名稱</pre></th>
+                      <th scope="col"><pre>起始日期</pre></th>
+                      <th scope="col"><pre>結束日期</pre></th>
+                      <th scope="col"><pre>最大損失</pre></th>
+                      <th scope="col"><pre>最終獲利／大盤</pre></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of this.strategyResultsByCode">
+                      <td><pre>{{item.StrategyName}}</pre></td>
+                      <td><pre>{{item.start_date}}</pre></td>
+                      <td><pre>{{item.end_date}}</pre></td>
+                      <td><pre>{{item.MaxLossPer}}%</pre></td>
+                      <td><pre>{{item.FinalProfitPer}}%／{{item.FinalProfitPer0050}}%</pre></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <div class="col" *ngIf="this.getStrategyResultByCodeStatus">
                 <app-loading></app-loading>

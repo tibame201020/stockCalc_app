@@ -17,3 +17,19 @@ input.stockCodeKeyInput:hover {
 input.stockCodeKeyInput:focus {
   border-bottom: 3px solid cornflowerblue;
 }
+
+.tagData:hover::after {
+  width: 100%;
+  background: coral;
+}
+
+.tagData::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0;
+  top: 5px;
+  background: transparent;
+  transition: all 0.3s;
+}

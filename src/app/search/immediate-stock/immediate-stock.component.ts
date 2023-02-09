@@ -1,8 +1,10 @@
+import Swal from 'sweetalert2';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StockImmediateInfo } from 'src/app/models/StockImmediateInfo';
 import { StockService } from 'src/app/services/stock.service';
+import { time } from 'echarts';
 
 @Component({
   selector: 'app-immediate-stock',
@@ -12,14 +14,14 @@ import { StockService } from 'src/app/services/stock.service';
 export class ImmediateStockComponent implements OnInit {
   stockImmediateInfo!:StockImmediateInfo;
   stockImmediateInfoOdd!: StockImmediateInfo;
-  
+
   constructor(
     public dialogRef: MatDialogRef<ImmediateStockComponent>,
     @Inject(MAT_DIALOG_DATA) public code:string,
     public dialog: MatDialog,
     private stockService: StockService,
   ) { }
-  
+
 
   ngOnInit(): void {
     this.getImmediateStock();
@@ -33,7 +35,13 @@ export class ImmediateStockComponent implements OnInit {
           this.stockImmediateInfo = res.stockImmediateInfo;
           this.stockImmediateInfoOdd = res.stockImmediateInfoOdd;
         } else {
-          console.log('no data');
+          Swal.fire({
+            icon: 'info',
+            title: '盤中資訊已關閉',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.dialogRef.close()
         }
       }
     )

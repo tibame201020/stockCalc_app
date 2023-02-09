@@ -21,7 +21,7 @@ export class DatePickerRangeComponent implements OnInit {
 
   ngOnInit(): void {
     let path = window.location.pathname;
-    if (path.includes('financial') || path.includes('summary')) {
+    if (path.includes('financial') || path.includes('summary') || path.includes('backtesting')) {
       this.range.patchValue({
         start: this.financialMinDate
       })

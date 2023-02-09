@@ -1,1 +1,123 @@
-<p>back-testing works!</p>
+<form [formGroup]="this.formGroup">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <input list="codeList" type="text" class="stockCodeKeyInput" placeholder="stock code" formControlName="keyword">
+      </div>
+      <div class="col-3">
+        <input type="number" class="stockCodeKeyInput" placeholder="stock code" formControlName="userFunds">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <app-date-picker-range (newItemEvent)="getDataRange($event)"> </app-date-picker-range>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <select class="form-control" id="nameSelect" formControlName="strategy">
+            <option *ngFor="let strategySummary of this.strategys; let i=index" value="{{strategySummary.name}}">
+              {{strategySummary.name}} - {{strategySummary.zh_name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" *ngIf="!this.getDataStatus && this.backTesting">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col"><pre>最終獲利 : {{this.backTesting.StrategyResult.FinalProfit | number}} ／ {{this.backTesting.StrategyResult.FinalProfitPer | number}}%</pre></div>
+                </div>
+                <div class="row">
+                  <div class="col"><pre>最大虧損 : {{this.backTesting.StrategyResult.MaxLoss | number}} ／ {{this.backTesting.StrategyResult.MaxLossPer | number}}%</pre></div>
+                </div>
+                <div class="row">
+                  <div class="col"><pre>年化報酬 : {{this.backTesting.StrategyResult.AnnualReturnPer | number}}%</pre></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-tab-group>
+                <mat-tab label="charts">
+                  <br>
+                  <app-compare-echart [inputData]="this.backTesting.Plot"></app-compare-echart>
+                </mat-tab>
+                <mat-tab label="交易紀錄">
+                  <br>
+                  <div style="overflow-y: scroll;height:20rem">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col"><pre>日期</pre></th>
+                          <th scope="col"><pre>未實現損益</pre></th>
+                          <th scope="col"><pre>已實現損益</pre></th>
+                          <th scope="col"><pre>交易資金</pre></th>
+                          <th scope="col"><pre>持有價格</pre></th>
+                          <th scope="col"><pre>持有股數</pre></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of this.backTesting.TradeDetailList.TradeDetail">
+                          <td><pre>{{item.labels | date:'y/MM/dd'}}</pre></td>
+                          <td><pre matTooltip="未實現損益">{{item.UnrealizedProfit | number}}</pre></td>
+                          <td><pre matTooltip="已實現損益">{{item.RealizedProfit | number}}</pre></td>
+                          <td><pre matTooltip="交易資金">{{item.trader_fund | number}}</pre></td>
+                          <td><pre matTooltip="持有價格">{{item.hold_cost | number}}</pre></td>
+                          <td><pre matTooltip="持有股數">{{item.hold_volume | number}}</pre></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="this.getDataStatus">
+        <app-loading></app-loading>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <br>
+      </div>
+    </div>
+
+  </div>
+
+</form>
+
+
+<datalist id='codeList'>
+  <div *ngIf="this.stockCodeList.length">
+    <div *ngFor="let stock of this.stockCodeList">
+      <option value="{{stock}}"></option>
+    </div>
+  </div>
+</datalist>

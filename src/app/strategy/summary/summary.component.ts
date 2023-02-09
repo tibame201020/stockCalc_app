@@ -1,5 +1,5 @@
 import { StockService } from './../../services/stock.service';
-import { StrategySummary } from './../../models/Strategy';
+import { StrategyResult, StrategySummary } from './../../models/Strategy';
 import { MatDialog } from '@angular/material/dialog';
 import { FinmindService } from './../../services/finmind.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,6 +19,9 @@ export class SummaryComponent implements OnInit {
 
   getStrategyResultStatus = false;
   getStrategyResultByCodeStatus = false;
+
+  strategyResultsNormal:StrategyResult[] = [];
+  strategyResultsByCode:StrategyResult[] = [];
 
 
   formGroup: FormGroup = this.formBuilder.group({
@@ -52,20 +55,21 @@ export class SummaryComponent implements OnInit {
     this.finmindService.getStrategyResult(strategy).subscribe(
       res => {
         this.getStrategyResultStatus = false;
-        console.log(res);
+        this.strategyResultsNormal = res;
       }
     )
   }
 
   getStrategyResultByCode(code:string) {
-
     let stockCode = code.includes(':')?code.split(':')[0] :code;
 
     this.getStrategyResultByCodeStatus = true;
     this.finmindService.getStrategyResultByCode(stockCode).subscribe(
       res => {
+        if (res) {
+          this.strategyResultsByCode = res;
+        }
         this.getStrategyResultByCodeStatus = false;
-        console.log(res)
       }
     )
   }
@@ -80,14 +84,11 @@ export class SummaryComponent implements OnInit {
   }
 
   openStrategySummary() {
-    const dialogRef = this.dialog.open(StrategySummaryComponent, {
+    this.dialog.open(StrategySummaryComponent, {
       width: '80rem',
       minHeight: '10rem',
       maxHeight: '60rem',
       data: this.strategys,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
     });
   }
 
