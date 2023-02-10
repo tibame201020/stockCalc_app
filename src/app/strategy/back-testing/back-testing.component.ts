@@ -77,6 +77,9 @@ export class BackTestingComponent implements OnInit {
   }
 
   getStockCodeList(key: string) {
+    if (key.length < 2) {
+      return;
+    }
     this.stockService.getCodeNmList(key).subscribe((res) => {
       this.stockCodeList = res;
     });

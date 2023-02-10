@@ -37,6 +37,9 @@ export class FinancialComponent implements OnInit {
   }
 
   getCompanyList(key: string) {
+    if (key.length < 2) {
+      return;
+    }
     this.stockService.getCompanyNmList(key).subscribe((res) => {
       this.companyList = res;
     });
